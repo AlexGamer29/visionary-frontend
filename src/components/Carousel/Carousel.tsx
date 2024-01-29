@@ -20,34 +20,34 @@ export default class Carousel extends Component<any> {
 
   renderPosts (): ReactNode {
     return posts.map((post: Post) => (
-        <div
-          key={post.id}
-          className="card-panel"
+      <div
+        key={post.id}
+        className="card-panel"
+        style={{
+          minWidth: 'min(100%, 426px)',
+          maxWidth: 'calc(73.3815vh - 128.418px)'
+        }}
+      >
+        <img
+          src={post.photo}
+          alt=""
           style={{
-            minWidth: 'min(100%, 426px)',
-            maxWidth: 'calc(73.3815vh - 128.418px)'
+            height: '100%'
           }}
-        >
-          <img
-            src={post.photo}
-            alt=""
-            style={{
-              height: '100%'
-            }}
-          />
-        </div>
+        />
+      </div>
     ))
   }
 
   render (): ReactNode {
     return (
-        <Flicking circular={true} plugins={this.plugins}>
-          {this.renderPosts()}
-          <ViewportSlot>
-            <span className="flicking-arrow-prev"></span>
-            <span className="flicking-arrow-next"></span>
-          </ViewportSlot>
-        </Flicking>
+      <Flicking circular={true} plugins={this.plugins}>
+        {this.renderPosts()}
+        <ViewportSlot>
+          <span className="flicking-arrow-prev"></span>
+          <span className="flicking-arrow-next"></span>
+        </ViewportSlot>
+      </Flicking>
     )
   }
 }

@@ -9,7 +9,7 @@ interface IProps {
   Download?: string
 }
 
-function Action(props: IProps): JSX.Element {
+function Action (props: IProps): JSX.Element {
   const { Icon, Download } = props
 
   const handleDownload = async (
@@ -31,16 +31,14 @@ function Action(props: IProps): JSX.Element {
   }
 
   // Compare the component type instead of accessing a non-existent property.
-  if (Icon === ArrowDownIcon) {
-    const downloadUrl = Download ?? ''
-    const imageName = getImageName(Download as string) ?? ''
-    const fullFilename = imageName.concat('.jpeg')
+  if (Icon === ArrowDownIcon && Download !== '') {
+    const imageName = getImageName(Download)
 
     return (
       <div
         className="p-3 bg-slate-50 rounded-md cursor-pointer shadow-md group"
         onClick={() => {
-          handleClick(downloadUrl, fullFilename)
+          handleClick(Download, imageName)
         }}
       >
         <Icon className="w-4 h-4 text-neutral-500 group-hover:text-neutral-800" />
