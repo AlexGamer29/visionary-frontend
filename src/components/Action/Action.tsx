@@ -2,13 +2,14 @@ import React from 'react'
 import axios from 'axios'
 import fileDownload from 'js-file-download'
 import { getImageName } from '../../utils'
+import ArrowDownIcon from '@heroicons/react/24/outline/ArrowDownIcon'
 
 interface IProps {
   Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
   Download?: string
 }
 
-function Action (props: IProps): JSX.Element {
+function Action(props: IProps): JSX.Element {
   const { Icon, Download } = props
 
   const handleDownload = async (
@@ -29,9 +30,10 @@ function Action (props: IProps): JSX.Element {
     })
   }
 
-  if (Icon.render.name === 'ArrowDownIcon') {
+  // Compare the component type instead of accessing a non-existent property.
+  if (Icon === ArrowDownIcon) {
     const downloadUrl = Download ?? ''
-    const imageName = getImageName(Download) ?? ''
+    const imageName = getImageName(Download as string) ?? ''
     const fullFilename = imageName.concat('.jpeg')
 
     return (
