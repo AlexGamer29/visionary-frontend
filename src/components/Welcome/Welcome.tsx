@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { type ReactElement } from 'react'
 import Search from '../Search/Search'
 
-function Welcome() {
+function Welcome (): ReactElement {
   return (
     <div className="max-w-4xl relative md:left-1/2 md:-translate-x-1/2 space-y-2 md:space-y-6 mb-14 md:mb-0">
       <h1 className="text-2xl md:text-5xl font-bold text-white">Unsplash</h1>
