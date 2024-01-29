@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
-function Search({ variant }) {
-  const [focused, setFocused] = useState(false)
-  const [style, setStyle] = useState('')
+interface IProps {
+  variant: string
+}
+
+function Search ({ variant }: IProps): JSX.Element {
+  const [focused, setFocused] = useState<boolean>(false)
+  const [style, setStyle] = useState<string>('')
 
   useEffect(() => {
     if (variant === 'navbar') {
@@ -20,8 +24,12 @@ function Search({ variant }) {
 
   return (
     <div
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
+      onFocus={() => {
+        setFocused(true)
+      }}
+      onBlur={() => {
+        setFocused(false)
+      }}
       className={` flex flex-1 items-center gap-2 px-4 ${style}`}
     >
       <MagnifyingGlassIcon className="w-5 h-5 text-neutral-600 hover:text-neutral-800 cursor-pointer" />
@@ -37,7 +45,7 @@ function Search({ variant }) {
 
 export default Search
 
-function VisualIcon() {
+function VisualIcon (): JSX.Element {
   return (
     <svg
       className="w-5 h-5 opacity-50 hover:opacity-100 cursor-pointer"

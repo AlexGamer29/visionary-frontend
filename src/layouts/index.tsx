@@ -1,11 +1,16 @@
 // Setup layout here
-import { Navbar, Explorer } from '../components';
+import React from 'react'
+import { Navbar, Explorer } from '../components'
 
-function Layout({ children }) {
-  return <div>{children}</div>;
+interface IProps {
+  children: React.ReactNode
 }
 
-function Header() {
+function Layout ({ children }: IProps): JSX.Element {
+  return <div>{children}</div>
+}
+
+function Header (): JSX.Element {
   return (
     <header className="sticky top-0 z-20 bg-white shadow-md">
       <div className="px-4 text-neutral-500">
@@ -13,15 +18,15 @@ function Header() {
         <Explorer />
       </div>
     </header>
-  );
+  )
 }
 
-function Main({ children }) {
+function Main ({ children }: IProps): JSX.Element {
   return (
     <main className="mb-20">
       <div className="px-4 space-y-6 overflow-hidden">{children}</div>
     </main>
-  );
+  )
 }
 
-export { Layout, Header, Main };
+export { Layout, Header, Main }

@@ -215,6 +215,6 @@ const posts = [
     photo:
       'https://images.unsplash.com/photo-1652447061965-203cffceceda?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMjA1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500',
   },
-]
+];
 
-export default posts
+export default posts;

@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '../Button/Button'
 import Divider from '../Divider/Divider'
 
-function Explorer() {
+function Explorer (): JSX.Element {
   return (
     <section className="flex gap-4 items-center group">
       <Button variant="explorer" focused>

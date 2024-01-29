@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
-function Button({ children, variant, focused = false }) {
-  const [style, setStyle] = useState('')
+interface IProps {
+  children: React.ReactNode
+  variant: string
+  focused?: boolean
+}
+
+function Button ({ children, variant, focused = false }: IProps): JSX.Element {
+  const [style, setStyle] = useState<string>('')
 
   useEffect(() => {
     if (variant === 'normal') {
@@ -11,7 +17,7 @@ function Button({ children, variant, focused = false }) {
     } else if (variant === 'clean') {
       setStyle(() => 'px-3 py-3')
     } else if (variant === 'explorer') {
-      setStyle(() => `px-2 py-3`)
+      setStyle(() => 'px-2 py-3')
     }
     if (focused) {
       setStyle((value) => `${value} text-neutral-800 border-b-2 border-black`)

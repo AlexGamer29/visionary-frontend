@@ -1,6 +1,10 @@
 import React from 'react'
 
-function Profile({ post }) {
+interface IProps {
+  post: any
+}
+
+function Profile ({ post }: IProps): JSX.Element {
   return (
     <div className="flex gap-4 items-center">
       <div className="rounded-full w-8 h-8 overflow-hidden">

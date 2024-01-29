@@ -5,7 +5,7 @@ import Divider from '../Divider/Divider'
 import Search from '../Search/Search'
 import { logo } from '../../constants/image'
 
-function Navbar() {
+function Navbar (): JSX.Element {
   return (
     <nav className="flex items-center gap-4 py-3">
       <div className="w-11 h-11">
