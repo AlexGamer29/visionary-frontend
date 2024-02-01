@@ -1,24 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './App.css'
-import { Layout, Header, Main } from './layouts'
-import { Hero, Collection, Carousel } from './components'
+import { Home, Login, SignUp } from './pages'
 
 function App (): JSX.Element {
-  const [showCarousel, setShowCarousel] = useState<boolean>(false)
-
-  const toggleCarousel = (): void => {
-    setShowCarousel(!showCarousel)
-  }
-
   return (
-    <Layout>
-      <Header />
-      <Main>
-        <Hero />
-        <Collection toggleCarousel={toggleCarousel} />
-        {showCarousel && <Carousel />}
-      </Main>
-    </Layout>
+    <div>
+      <SignUp />
+    </div>
   )
 }
 
