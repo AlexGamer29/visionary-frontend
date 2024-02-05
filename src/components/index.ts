@@ -6,5 +6,16 @@ import Card from './Card/Card'
 import Action from './Action/Action'
 import Profile from './Profile/Profile'
 import Carousel from './Carousel/Carousel'
+import Loader from './Loader/Loader'
 
-export { Navbar, Explorer, Hero, Collection, Card, Action, Profile, Carousel }
+export {
+  Navbar,
+  Explorer,
+  Hero,
+  Collection,
+  Card,
+  Action,
+  Profile,
+  Carousel,
+  Loader
+}

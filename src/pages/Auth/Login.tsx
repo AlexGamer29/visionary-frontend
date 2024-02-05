@@ -1,30 +1,46 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Loader } from '../../components'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import { motion } from 'framer-motion'
 import { errorVariants, errorStyles } from '../../constants/errorVariants'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { login } from '../../actions/action'
 
-function Login (): JSX.Element {
+function Login(): JSX.Element {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [rememberMe, setRememberMe] = useState(false)
-  const [loading, setLoading] = useState(false)
+
+  const authReducer = useSelector((state: any) => state.authReducer)
+
+  const { authData, loading, serverErrors } = authReducer
+  console.log(authReducer)
+
+  useEffect(() => {
+    if (authData != null) {
+      navigate('/')
+    }
+  }, [dispatch, authData])
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().required('Email is required').email('Email is invalid'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
-      .required('Password is required')
+      .required('Password is required'),
   })
 
   const formOptions = { resolver: yupResolver(validationSchema) }
   const { register, handleSubmit, reset, formState } = useForm(formOptions)
   const { errors } = formState
 
-  function onSubmit (data: Object) {
+  function onSubmit(data: Object) {
     console.log('HEHE', data)
+    dispatch(login(data, navigate));
     return false
   }
 
