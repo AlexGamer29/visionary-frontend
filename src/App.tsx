@@ -4,7 +4,7 @@ import { Home, Login, SignUp } from './pages'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { publicRoutes } from './routes'
 
-function App(): JSX.Element {
+function App (): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>

@@ -5,7 +5,7 @@ import { Home, Login, SignUp } from '../pages'
 const publicRoutes = [
   { path: routesConfig.home, component: Home },
   { path: routesConfig.login, component: Login, layout: null },
-  { path: routesConfig.register, component: SignUp, layout: null },
+  { path: routesConfig.register, component: SignUp, layout: null }
 ]
 // const privateRoutes = [
 //   { path: routesConfig.profile_edit, component: EditEmployee },

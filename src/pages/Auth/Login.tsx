@@ -5,12 +5,13 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import { motion } from 'framer-motion'
 import { errorVariants, errorStyles } from '../../constants/errorVariants'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { useAppDispatch } from '../../hooks/hook'
 import { useNavigate } from 'react-router-dom'
 import { login } from '../../actions/action'
 
-function Login(): JSX.Element {
-  const dispatch = useDispatch()
+function Login (): JSX.Element {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -31,16 +32,16 @@ function Login(): JSX.Element {
     email: Yup.string().required('Email is required').email('Email is invalid'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
-      .required('Password is required'),
+      .required('Password is required')
   })
 
   const formOptions = { resolver: yupResolver(validationSchema) }
   const { register, handleSubmit, reset, formState } = useForm(formOptions)
   const { errors } = formState
 
-  function onSubmit(data: Object) {
+  function onSubmit (data: Object) {
     console.log('HEHE', data)
-    dispatch(login(data, navigate));
+    dispatch(login(data, navigate))
     return false
   }
 

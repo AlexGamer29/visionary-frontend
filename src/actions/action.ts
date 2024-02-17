@@ -5,15 +5,14 @@ import {
   START_LOADING,
   LOGOUT,
   INFO_SUCCESS,
-  INFO_FAIL,
+  INFO_FAIL
 } from '../constants/auth'
 import * as api from '../api'
-import { Dispatch } from 'redux'
+import { type Dispatch } from 'redux'
 import { NavigateFunction } from 'react-router-dom'
 
 export const login =
-  (formData: any, router: any) =>
-  async (dispatch: Dispatch) => {
+  (formData: Object, router: NavigateFunction) => async (dispatch: Dispatch) => {
     try {
       dispatch({ type: START_LOADING })
       const data = await api.login(formData)
@@ -25,7 +24,7 @@ export const login =
       const message = error.response?.data ? error.response.data : error.message
       dispatch({
         type: AUTH_FAIL,
-        payload: message,
+        payload: message
       })
     }
   }
