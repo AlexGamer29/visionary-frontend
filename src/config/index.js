@@ -1,1 +1,1 @@
-// File config for routes
+// Config
