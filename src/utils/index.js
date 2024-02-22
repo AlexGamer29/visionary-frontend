@@ -24,4 +24,10 @@ function getImageName(url) {
   return `${filename}.${extension}`
 }
 
-export { getImageName }
+function generateShortName(firstName, lastName) {
+  const first = firstName.charAt(0).toUpperCase()
+  const last = lastName.charAt(0).toUpperCase()
+  return `${first}${last}`
+}
+
+export { getImageName, generateShortName }

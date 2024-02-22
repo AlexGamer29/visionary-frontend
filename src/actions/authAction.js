@@ -17,10 +17,9 @@ export const login = (formData, router) => async (dispatch) => {
 
     const user = await api.fetchUserProfile()
     dispatch({ type: INFO_SUCCESS, payload: user })
-    
+
     router('/')
   } catch (error) {
-    console.log(error)
     const message = error.response?.data ? error.response.data : error.message
     dispatch({
       type: AUTH_FAIL,
@@ -32,7 +31,6 @@ export const login = (formData, router) => async (dispatch) => {
 export const register = (formData, router) => async (dispatch) => {
   try {
     const { data } = await api.register(formData)
-    console.log(data)
 
     dispatch({ type: AUTH, data })
 

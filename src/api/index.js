@@ -13,7 +13,7 @@ const API = axios.create({
 API.interceptors.request.use((req) => {
   const profile = localStorage.getItem('profile')
   if (profile) {
-    req.headers.Authorization = `Token ${JSON.parse(profile).accessToken}`
+    req.headers.Authorization = `Bearer ${JSON.parse(profile).accessToken}`
   }
   return req
 })
@@ -34,21 +34,26 @@ API.interceptors.response.use(
         const savedProfile = localStorage.getItem('profile')
         const refreshToken = JSON.parse(savedProfile).refreshToken
         const accessToken = await generateAccessToken({ refreshToken })
+
         // Update the token in the profile
         const profile = JSON.parse(savedProfile)
         profile.accessToken = accessToken
-        localStorage.setItem('profile', JSON.stringify(savedProfile))
+
+        // Update the profile in localStorage
+        localStorage.setItem('profile', JSON.stringify(profile))
+
         // Retry the original request with the new token
-        originalRequest.headers.Authorization = `Token ${accessToken}`
+        originalRequest.headers.Authorization = `Bearer ${accessToken}`
         return API(originalRequest)
-      } catch (error) {
-        handleAxiosError(error)
-        throw error
+      } catch (err) {
+        handleAxiosError(err)
+        throw err
       }
     }
     return Promise.reject(error)
   }
 )
+
 // 1. AUTH
 // Function to handle login
 export const login = async (data) => {
@@ -73,10 +78,10 @@ export const signup = async (data) => {
 }
 
 // Function to generate access token via refresh token
-export const generateAccessToken = async (data) => {
+export const generateAccessToken = async ({ refreshToken }) => {
   try {
     const response = await API.post('/auth/token', {
-      data,
+      refreshToken,
     })
     return response.data.accessToken
   } catch (error) {
@@ -88,13 +93,8 @@ export const generateAccessToken = async (data) => {
 // 2. USER
 // Function to fetch user profile
 export const fetchUserProfile = async () => {
-  try {
-    const response = await API.get('/user/me')
-    return response.data.user
-  } catch (error) {
-    handleAxiosError(error)
-    throw error
-  }
+  const response = await API.get('/user/me')
+  return response.data // Return only the data from the response
 }
 
 // Function to handle Axios errors

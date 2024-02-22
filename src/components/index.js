@@ -7,6 +7,7 @@ import Action from './Action/Action'
 import Profile from './Profile/Profile'
 import Carousel from './Carousel/Carousel'
 import Loader from './Loader/Loader'
+import UserProfile from './UserProfile/UserProfile'
 
 export {
   Navbar,
@@ -18,4 +19,5 @@ export {
   Profile,
   Carousel,
   Loader,
+  UserProfile,
 }
