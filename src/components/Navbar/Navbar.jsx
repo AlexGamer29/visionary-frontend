@@ -51,23 +51,25 @@ function Navbar() {
             <Popover
               content={
                 <List itemLayout="vertical" className="bg-white">
-                  {privateRoutes.map((route, index) => (
-                    <List.Item
-                      key={index}
-                      style={{ display: 'flex', justifyContent: 'center' }}
-                    >
-                      <AntBtn
-                        type="text"
-                        onClick={() => {
-                          navigate(route.path)
-                          console.log(route.name)
-                        }}
-                        style={{ lineHeight: 'normal' }}
+                  {privateRoutes.map((route, index) =>
+                    route.name ? (
+                      <List.Item
+                        key={index}
+                        style={{ display: 'flex', justifyContent: 'center' }}
                       >
-                        {route.name}
-                      </AntBtn>
-                    </List.Item>
-                  ))}
+                        <AntBtn
+                          type="text"
+                          onClick={() => {
+                            navigate(route.path)
+                            console.log(route.name)
+                          }}
+                          style={{ lineHeight: 'normal' }}
+                        >
+                          {route.name}
+                        </AntBtn>
+                      </List.Item>
+                    ) : null
+                  )}
                 </List>
               }
               trigger="click"
